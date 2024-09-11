@@ -121,7 +121,4 @@ submitting pull requests.
 -   Perform regular end-to-end testing
 -   Implement visual regression testing for UI components
 
-
 # TODO
-
--   
