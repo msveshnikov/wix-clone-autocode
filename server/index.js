@@ -14,7 +14,6 @@ import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import compression from 'compression';
 import { typeDefs, resolvers } from './graphql.js';
-import Redis from 'ioredis';
 import { User, Website } from './models/index.js';
 
 dotenv.config();
@@ -45,8 +44,6 @@ mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
-
-const redis = new Redis(process.env.REDIS_URL);
 
 const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,

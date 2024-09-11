@@ -147,13 +147,6 @@ submitting pull requests.
 -   Implement user behavior analytics
 -   Create custom dashboards for system health monitoring
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 # TODO
 
--   fix MissingSchemaError: Schema hasn't been registered for model "User". Use mongoose.model(name,
-    schema) at Mongoose.model
-    (C:\My-progs\Node.JS\AI\test15\server\node_modules\mongoose\lib\index.js:554:13) at
-    file:///C:/My-progs/Node.JS/AI/test15/server/graphql.js:8:23
+-
