@@ -1,0 +1,77 @@
+{
+    "name": "wix-clone-server",
+    "version": "1.0.0",
+    "description": "Backend server for WiX Clone project",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js",
+        "test": "jest --coverage",
+        "lint": "eslint .",
+        "format": "prettier --write .",
+        "build": "babel src -d dist",
+        "docker:build": "docker build -t wix-clone-server .",
+        "docker:run": "docker run -p 3000:3000 wix-clone-server"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "apollo-server-express": "^3.5.0",
+        "aws-sdk": "^2.1016.0",
+        "bcryptjs": "^2.4.3",
+        "compression": "^1.7.4",
+        "connect-redis": "^6.0.0",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-graphql": "^0.12.0",
+        "express-rate-limit": "^5.5.0",
+        "express-session": "^1.17.2",
+        "graphql": "^15.7.2",
+        "graphql-subscriptions": "^2.0.0",
+        "graphql-tools": "^8.2.0",
+        "helmet": "^4.6.0",
+        "joi": "^17.4.2",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^6.0.12",
+        "morgan": "^1.10.0",
+        "multer": "^1.4.3",
+        "redis": "^3.1.2",
+        "sharp": "^0.29.2",
+        "socket.io": "^4.3.1",
+        "winston": "^3.3.3"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.16.0",
+        "@babel/core": "^7.16.0",
+        "@babel/node": "^7.16.0",
+        "@babel/preset-env": "^7.16.0",
+        "babel-jest": "^27.3.1",
+        "cross-env": "^7.0.3",
+        "eslint": "^8.1.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-import": "^2.25.2",
+        "faker": "^5.5.3",
+        "husky": "^7.0.4",
+        "jest": "^27.3.1",
+        "lint-staged": "^11.2.6",
+        "mongodb-memory-server": "^8.0.0",
+        "nodemon": "^2.0.14",
+        "prettier": "^2.4.1",
+        "supertest": "^6.1.6"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.js": [
+            "eslint --fix",
+            "prettier --write"
+        ]
+    }
+}
