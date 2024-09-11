@@ -33,7 +33,6 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "server": "node server/index.js",
         "lint": "eslint .",
         "format": "prettier --write ."
     },
@@ -57,12 +56,10 @@
     },
     "devDependencies": {
         "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-        "concurrently": "^8.2.0",
         "eslint": "^8.45.0",
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-react": "^7.35.2",
-        "prettier": "^2.8.8",
-        "supertest": "^6.3.3"
+        "prettier": "^2.8.8"
     },
     "jest": {
         "collectCoverageFrom": [
