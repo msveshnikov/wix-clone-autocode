@@ -1,9 +1,9 @@
-const { gql } = require('apollo-server-express');
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const AWS = require('aws-sdk');
-const { PubSub } = require('graphql-subscriptions');
+import { gql } from 'apollo-server-express';
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import AWS from 'aws-sdk';
+import { PubSub } from 'graphql-subscriptions';
 
 const User = mongoose.model('User');
 const Website = mongoose.model('Website');
@@ -292,4 +292,4 @@ const resolvers = {
     }
 };
 
-module.exports = { typeDefs, resolvers };
+export { typeDefs, resolvers };

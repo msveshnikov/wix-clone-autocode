@@ -1,20 +1,21 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const AWS = require('aws-sdk');
-const dotenv = require('dotenv');
-const { ApolloServer } = require('apollo-server-express');
-const { makeExecutableSchema } = require('@graphql-tools/schema');
-const { typeDefs, resolvers } = require('./graphql');
-const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
-const compression = require('compression');
-const Redis = require('ioredis');
-const sharp = require('sharp');
-const { createServer } = require('http');
-const { Server } = require('socket.io');
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import AWS from 'aws-sdk';
+import dotenv from 'dotenv';
+import { ApolloServer } from 'apollo-server-express';
+import { makeExecutableSchema } from '@graphql-tools/schema';
+import { Server } from 'socket.io';
+import { createServer } from 'http';
+import sharp from 'sharp';
+import rateLimit from 'express-rate-limit';
+import helmet from 'helmet';
+import compression from 'compression';
+import { typeDefs, resolvers } from './graphql.js';
+import Redis from 'ioredis';
+import { User, Website } from './models/index.js';
 
 dotenv.config();
 
@@ -46,22 +47,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 });
 
 const redis = new Redis(process.env.REDIS_URL);
-
-const User = mongoose.model('User', {
-    username: String,
-    email: String,
-    password: String
-});
-
-const Website = mongoose.model('Website', {
-    userId: mongoose.Schema.Types.ObjectId,
-    name: String,
-    content: Object,
-    domain: String,
-    published: Boolean,
-    version: Number,
-    collaborators: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
-});
 
 const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -189,7 +174,10 @@ app.post('/api/upload', authenticateToken, async (req, res) => {
 app.post('/api/collaborate', authenticateToken, async (req, res) => {
     try {
         const { websiteId, collaboratorEmail } = req.body;
-        const website = await Website.findOne({ _id: websiteId, userId: req.user.userId });
+        const website = await Website.findOne({
+            _id: websiteId,
+            userId: req.user.userId
+        });
         if (!website) return res.status(404).json({ error: 'Website not found' });
 
         const collaborator = await User.findOne({ email: collaboratorEmail });
